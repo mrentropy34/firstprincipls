@@ -1,0 +1,2314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Principls | Capital with Conviction. Counsel with Clarity.</title>
+    <meta name="description" content="First Principls is a family investment office and strategic advisory. We back founders, operators, and builders who challenge assumptions and engineer the future from the ground up.">
+    <meta name="keywords" content="investment, advisory, first principles, industrial technology, defense, manufacturing, family office">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="First Principls | Capital with Conviction">
+    <meta property="og:description" content="We back founders, operators, and builders who challenge assumptions and engineer the future from the ground up.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23c9a962' stroke-width='1.5'/%3E%3Crect x='16' y='10' width='8' height='8' transform='rotate(45 16 10)' fill='%23c9a962'/%3E%3C/svg%3E">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0c10;
+            --bg-mid: #12151c;
+            --bg-surface: #1a1e28;
+            --glass-bg: rgba(26, 30, 40, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.04);
+            --text-primary: #f4f4f5;
+            --text-secondary: rgba(244, 244, 245, 0.7);
+            --text-muted: rgba(244, 244, 245, 0.45);
+            --accent: #c9a962;
+            --accent-glow: rgba(201, 169, 98, 0.15);
+            --accent-deep: #8b7340;
+            --blue-subtle: rgba(100, 140, 200, 0.08);
+            --gradient-mesh-1: #1a1e28;
+            --gradient-mesh-2: #0f1218;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.12) 0%, transparent 70%);
+            top: -200px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(60, 90, 140, 0.1) 0%, transparent 70%);
+            bottom: -300px;
+            left: -200px;
+            animation-delay: -7s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.08) 0%, transparent 70%);
+            top: 50%;
+            left: 30%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10, 12, 16, 0.7);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 4%;
+            background: rgba(10, 12, 16, 0.9);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-mark::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            transform: rotate(45deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.75rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 28px;
+            height: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 101;
+            position: relative;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 100%;
+            height: 1.5px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 12, 16, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 99;
+            padding: 6rem 2rem 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 1.25rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-nav-cta {
+            display: block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--bg-deep);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Main Content Wrapper */
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 8% 6rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--bg-deep);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            background: var(--glass-highlight);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.5s;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 8%;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin-bottom: 4rem;
+        }
+
+        .section-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: linear-gradient(180deg, transparent 0%, var(--bg-mid) 50%, transparent 100%);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .philosophy-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--glass-highlight);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .philosophy-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--accent);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-card h3 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .philosophy-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Investment Thesis */
+        .thesis {
+            position: relative;
+        }
+
+        .thesis-content {
+            display: block;
+        }
+
+        .thesis-ethos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .ethos-card {
+            position: relative;
+            padding: 3rem 2.5rem;
+            background: linear-gradient(180deg, rgba(26, 30, 40, 0.6) 0%, rgba(26, 30, 40, 0.2) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .ethos-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .ethos-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .ethos-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .ethos-card:hover::before,
+        .ethos-card:hover::after {
+            opacity: 1;
+        }
+
+        .ethos-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: var(--accent);
+            opacity: 0.5;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .ethos-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .ethos-title em {
+            font-style: italic;
+        }
+
+        .ethos-subtitle {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .ethos-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 1024px) {
+            .thesis-ethos {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .ethos-card {
+                padding: 2.5rem 2rem;
+            }
+
+            .ethos-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .thesis-ethos {
+                margin-top: 3rem;
+            }
+
+            .ethos-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .ethos-title {
+                font-size: 1.5rem;
+            }
+
+            .ethos-description {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Principals Section */
+        .principals {
+            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principals::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .principals-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .principal-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(26, 30, 40, 0.8) 0%, rgba(26, 30, 40, 0.4) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            padding: 3rem;
+            transition: all 0.5s ease;
+        }
+
+        .principal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), rgba(201, 169, 98, 0.3));
+            opacity: 0.7;
+        }
+
+        .principal-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .principal-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .principal-role {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .principal-domain {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .principal-bio {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .principal-value {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-style: italic;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .principals-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .principal-card {
+                padding: 2rem;
+            }
+
+            .principal-name {
+                font-size: 1.6rem;
+            }
+
+            .principal-role {
+                font-size: 1rem;
+            }
+
+            .principal-bio {
+                font-size: 0.9rem;
+            }
+
+            .principal-value {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Team of Teams Network */
+        .network-section {
+            margin-top: 5rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .network-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .network-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .network-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .network-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .network-capabilities {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .capability-card {
+            background: rgba(26, 30, 40, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            padding: 1.75rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .capability-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+            background: rgba(201, 169, 98, 0.03);
+            transform: translateY(-2px);
+        }
+
+        .capability-card:hover::before {
+            opacity: 1;
+        }
+
+        .capability-icon {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 1rem;
+        }
+
+        .capability-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        .capability-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .capability-card p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1200px) {
+            .network-capabilities {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .network-section {
+                margin-top: 3rem;
+                padding-top: 3rem;
+            }
+
+            .network-title {
+                font-size: 2rem;
+            }
+
+            .network-description {
+                font-size: 0.95rem;
+            }
+
+            .network-capabilities {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .capability-card {
+                padding: 1.5rem;
+            }
+
+            .capability-card h4 {
+                font-size: 1rem;
+            }
+        }
+
+        /* Advisory Section */
+        .advisory {
+            background: var(--bg-mid);
+        }
+
+        .advisory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .advisory-card {
+            padding: 3rem;
+            border: 1px solid var(--glass-border);
+            border-right: none;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .advisory-card:last-child {
+            border-right: 1px solid var(--glass-border);
+        }
+
+        .advisory-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--accent-glow) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .advisory-card:hover::before {
+            opacity: 1;
+        }
+
+        .advisory-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .advisory-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1;
+        }
+
+        .advisory-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .advisory-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Approach Section */
+        .approach {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach-quote {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .approach-quote blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .approach-quote blockquote::before {
+            content: '"';
+            position: absolute;
+            top: -1.5rem;
+            left: -2rem;
+            font-size: 6rem;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .quote-accent {
+            color: var(--accent);
+        }
+
+        .approach-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin: 3rem auto;
+        }
+
+        .approach-attribution {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Focus Areas */
+        .focus {
+            background: linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-deep) 100%);
+        }
+
+        .focus-verticals {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .vertical-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .vertical-card:hover {
+            border-color: var(--accent);
+            background: rgba(201, 169, 98, 0.05);
+        }
+
+        .vertical-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .vertical-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        .vertical-content h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .vertical-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .foundation-wrapper {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .foundation-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .foundation-label span {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .foundation-label span::before,
+        .foundation-label span::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+
+        .foundation-label span::before {
+            right: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+
+        .foundation-label span::after {
+            left: 100%;
+            background: linear-gradient(270deg, transparent, var(--accent));
+        }
+
+        .foundation-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.08) 0%, rgba(26, 30, 40, 0.8) 100%);
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            border-radius: 2px;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            overflow: hidden;
+        }
+
+        .foundation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), rgba(201, 169, 98, 0.3), var(--accent));
+        }
+
+        .foundation-icon {
+            width: 64px;
+            height: 64px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: rgba(201, 169, 98, 0.1);
+        }
+
+        .foundation-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        .foundation-content {
+            flex: 1;
+        }
+
+        .foundation-content h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .foundation-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .foundation-threads {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 10%;
+            pointer-events: none;
+        }
+
+        .thread {
+            width: 1px;
+            height: 20px;
+            background: linear-gradient(180deg, transparent, var(--accent));
+            opacity: 0.5;
+        }
+
+        /* Contact Section */
+        .contact {
+            position: relative;
+            padding: 10rem 8%;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-method {
+            text-align: center;
+        }
+
+        .contact-method-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method-value {
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .contact-method-value a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-method-value a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 8% 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--text-primary);
+        }
+
+        .footer-tagline {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-legal {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-location {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered reveal for grid items */
+        .philosophy-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+        .ethos-card.reveal:nth-child(2) { transition-delay: 0.15s; }
+        .ethos-card.reveal:nth-child(3) { transition-delay: 0.3s; }
+        .principal-card.reveal:nth-child(2) { transition-delay: 0.15s; }
+        .advisory-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+        .advisory-card.reveal:nth-child(3) { transition-delay: 0.2s; }
+        .vertical-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+        .vertical-card.reveal:nth-child(3) { transition-delay: 0.2s; }
+        .vertical-card.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .advisory-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .advisory-card {
+                border: 1px solid var(--glass-border);
+                border-bottom: none;
+            }
+
+            .advisory-card:last-child {
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .focus-verticals {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+                letter-spacing: 0.15em;
+                gap: 0.75rem;
+            }
+
+            .logo-mark {
+                width: 32px;
+                height: 32px;
+            }
+
+            .logo-mark::before {
+                width: 6px;
+                height: 6px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            section {
+                padding: 4rem 6%;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 8rem 6% 5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+                line-height: 1.15;
+            }
+
+            .hero-eyebrow {
+                font-size: 0.7rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 2rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-eyebrow {
+                font-size: 0.7rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-eyebrow::before {
+                width: 24px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                line-height: 1.25;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .philosophy-card {
+                padding: 2rem;
+            }
+
+            .card-number {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .philosophy-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .advisory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advisory-card {
+                padding: 2rem;
+            }
+
+            .advisory-icon {
+                width: 44px;
+                height: 44px;
+                margin-bottom: 1rem;
+            }
+
+            .advisory-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .advisory-card p {
+                font-size: 0.9rem;
+            }
+
+            .approach-quote blockquote {
+                font-size: 1.4rem;
+                line-height: 1.5;
+            }
+
+            .approach-quote blockquote::before {
+                font-size: 4rem;
+                top: -1rem;
+                left: -0.5rem;
+            }
+
+            .approach-divider {
+                margin: 2rem auto;
+            }
+
+            .focus-verticals {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .vertical-card {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .vertical-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .vertical-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .vertical-content h4 {
+                font-size: 1.1rem;
+            }
+
+            .vertical-content p {
+                font-size: 0.85rem;
+            }
+
+            .foundation-card {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .foundation-icon {
+                width: 56px;
+                height: 56px;
+            }
+
+            .foundation-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .foundation-content h4 {
+                font-size: 1.3rem;
+            }
+
+            .foundation-content p {
+                font-size: 0.9rem;
+            }
+
+            .foundation-threads {
+                display: none;
+            }
+
+            .contact {
+                padding: 6rem 6%;
+            }
+
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .contact p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            footer {
+                padding: 3rem 6% 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .footer-brand {
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem 1.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .footer-logo {
+                font-size: 1rem;
+            }
+
+            .footer-legal {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 7rem 5% 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+            }
+
+            section {
+                padding: 3.5rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .philosophy-card {
+                padding: 1.5rem;
+            }
+
+            .card-number {
+                font-size: 2rem;
+            }
+
+            .philosophy-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .philosophy-card p {
+                font-size: 0.9rem;
+            }
+
+            .pillar {
+                padding: 1.25rem;
+            }
+
+            .advisory-card {
+                padding: 1.5rem;
+            }
+
+            .approach-quote blockquote {
+                font-size: 1.2rem;
+            }
+
+            .focus-item {
+                padding: 1.5rem;
+            }
+
+            .focus-item h3 {
+                font-size: 1.25rem;
+                gap: 0.75rem;
+            }
+
+            .focus-item h3::before {
+                width: 6px;
+                height: 6px;
+            }
+
+            .contact h2 {
+                font-size: 1.75rem;
+            }
+
+            .contact-method-label {
+                font-size: 0.65rem;
+            }
+
+            .contact-method-value {
+                font-size: 0.9rem;
+            }
+
+            .btn-primary {
+                font-size: 0.8rem;
+                padding: 0.9rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-mark"></div>
+            FIRST PRINCIPLS
+        </a>
+        <ul class="nav-links">
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#investment">Ethos</a></li>
+            <li><a href="#principals">Principals</a></li>
+            <li><a href="#advisory">Partnership</a></li>
+            <li><a href="#focus">Focus</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Connect</a>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#investment">Ethos</a></li>
+            <li><a href="#principals">Principals</a></li>
+            <li><a href="#advisory">Partnership</a></li>
+            <li><a href="#focus">Focus</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="mobile-nav-cta">Connect</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Capital with Conviction. Counsel with Clarity.</p>
+                <h1>Where Leadership Meets <em>First Principles</em> Thinking</h1>
+                <p class="hero-description">We back founders, operators, and builders who challenge assumptions and engineer the future from the ground up. By starting with what's true—and asking why until we get to the root—we uncover opportunity where others see obstacles.</p>
+                <div class="hero-cta-group">
+                    <a href="#philosophy" class="btn-primary">Our Approach</a>
+                    <a href="#contact" class="btn-secondary">Start a Conversation</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Let's Go</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy" id="philosophy">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Our Philosophy</p>
+                <h2 class="section-title">Most investors look at surface-level metrics. We go deeper.</h2>
+                <p class="section-description">We help companies rewire how things work—from capital structure to factory floor. Our mission is to compound long-term value by aligning leadership, technology, and operations around what truly matters. Not what's convenient.</p>
+            </div>
+
+            <div class="philosophy-grid">
+                <div class="philosophy-card reveal">
+                    <div class="card-number">01</div>
+                    <h3>First <em>Principals</em></h3>
+                    <p>We work alongside the principals of each business—the people doing the real work. Not from boardrooms, but from the floor.</p>
+                </div>
+                <div class="philosophy-card reveal">
+                    <div class="card-number">02</div>
+                    <h3>First <em>Principles</em></h3>
+                    <p>We bring a first principles mindset to every challenge, breaking down complexity to reconstruct better systems from fundamental truths.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Ethos Section -->
+        <section class="thesis" id="investment">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Investment Ethos</p>
+                <h2 class="section-title">We don't follow trends. We build foundational systems that outlast them.</h2>
+            </div>
+
+            <div class="thesis-content">
+                <div class="thesis-ethos">
+                    <div class="ethos-card reveal">
+                        <div class="ethos-number">01</div>
+                        <div class="ethos-title">Reality <em>into</em> Execution</div>
+                        <div class="ethos-subtitle">Grounding Is Non-Negotiable</div>
+                        <p class="ethos-description">A model that cannot survive real-world conditions is not incomplete—it is false. Grounding is not a phase to be deferred. It is the cost of entry.</p>
+                    </div>
+                    <div class="ethos-card reveal">
+                        <div class="ethos-number">02</div>
+                        <div class="ethos-title">Friction <em>as Signal</em></div>
+                        <div class="ethos-subtitle">Constraint Reveals Truth</div>
+                        <p class="ethos-description">Resistance reveals structure. Noise, failure, and delay are information-rich surfaces. We treat friction as data—not as an obstacle to be explained away.</p>
+                    </div>
+                    <div class="ethos-card reveal">
+                        <div class="ethos-number">03</div>
+                        <div class="ethos-title">The <em>Long Curve</em></div>
+                        <div class="ethos-subtitle">Time Favors the Grounded</div>
+                        <p class="ethos-description">Short-term success favors those who optimize symbols and narratives. Long-term survival favors those who optimize truth. We choose the long curve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Principals Section -->
+        <section class="principals" id="principals">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Our Principals</p>
+                <h2 class="section-title">Experience That Shapes Conviction</h2>
+                <p class="section-description">Decades of leadership across defense, government, and industry—now focused on building what lasts.</p>
+            </div>
+
+            <div class="principals-grid">
+                <div class="principal-card reveal">
+                    <div class="principal-name">George Duchak, PhD, PE</div>
+                    <div class="principal-role">Founding Partner</div>
+                    <div class="principal-domain">Defense · National Security · Federal Innovation</div>
+                    <p class="principal-bio">A distinguished technology and defense leader with a career spanning senior roles across government, industry, and national security. Former Deputy Assistant Secretary of Defense, CIO of the Defense Logistics Agency, and Lab Director of the Air Force Research Laboratory. As founding director of DIUx—now the Defense Innovation Unit—pioneered the DoD's approach to dual-use technology adoption.</p>
+                    <div class="principal-value">Brings unmatched insight into federal innovation priorities, cyber-physical systems, and strategic acquisition—paired with a powerful network across the DoD, defense primes, and emerging tech ecosystems.</div>
+                </div>
+
+                <div class="principal-card reveal">
+                    <div class="principal-name">Alex Duchak</div>
+                    <div class="principal-role">Managing Partner</div>
+                    <div class="principal-domain">Operations · Industrial Technology · Business Strategy</div>
+                    <p class="principal-bio">A systems-driven builder, strategist, and operator with a track record of transforming industrial technologies into scalable market platforms. Fuses engineering precision with business model innovation to unlock value across advanced manufacturing, energy, and defense sectors.</p>
+                    <div class="principal-value">Brings hands-on expertise in technology commercialization, operational excellence, and the intricate journey from laboratory breakthrough to market-ready solution.</div>
+                </div>
+            </div>
+
+            <!-- Team of Teams Network -->
+            <div class="network-section reveal">
+                <div class="network-header">
+                    <div class="network-label">Our Extended Network</div>
+                    <h3 class="network-title">Team of Teams</h3>
+                    <p class="network-description">We operate with a fluid, decentralized, and deeply aligned ethos. Think less rigid hierarchy, more precision strike force. Our core team forms the nucleus, but our real strength lies in a dynamic ecosystem of operators, engineers, technologists, and strategists who plug in as needed to solve high-stakes, high-complexity problems.</p>
+                </div>
+
+                <div class="network-capabilities">
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                            </svg>
+                        </div>
+                        <h4>Operational Excellence</h4>
+                        <p>Cross-sector execution specialists who turn bold strategies into actionable systems—aligning people, process, and technology to accelerate outcomes.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M2 20h20M4 20V10l4-2v12M8 20V8l4-2v14M16 20V6l4-2v16"/>
+                                <path d="M12 20V6"/>
+                            </svg>
+                        </div>
+                        <h4>Manufacturing & Supply Chain</h4>
+                        <p>Field-tested operators forged in the trenches of American manufacturing—from plant turnarounds to pandemic disruptions to global supply chain shocks. Deep networks across the industrial Midwest.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h4>Capital Strategy</h4>
+                        <p>Institutional fundraisers with track records securing hundreds of millions across philanthropy, endowments, and mission-driven ventures. Deep expertise in donor psychology, stakeholder alignment, and narratives that move markets.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                                <circle cx="9" cy="9" r="1.5"/>
+                                <circle cx="15" cy="9" r="1.5"/>
+                                <circle cx="9" cy="15" r="1.5"/>
+                                <circle cx="15" cy="15" r="1.5"/>
+                                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M20 9h3M1 15h3M20 15h3"/>
+                            </svg>
+                        </div>
+                        <h4>Engineering & Automation</h4>
+                        <p>Technical strategists with deep expertise in advanced test systems, electronics, and industrial automation—translating technical complexity into scalable, real-world performance for next-generation platforms.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M3 11l18-5v12L3 13v-2z"/>
+                                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+                            </svg>
+                        </div>
+                        <h4>Communications & Narrative</h4>
+                        <p>World-class strategists who coach executives and founders on narratives that move people and capital. Experts at turning complexity into conviction through message discipline and shared vision.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M3 21h18M4 21V10l8-6 8 6v11"/>
+                                <path d="M9 21v-6h6v6"/>
+                                <path d="M10 3v3M14 3v3"/>
+                            </svg>
+                        </div>
+                        <h4>Industrial Policy & Development</h4>
+                        <p>Capital markets veterans who bridge high finance, economic development, and manufacturing revitalization—scaling industrial transformation through policy alignment and strategic capital deployment.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M12 22c-4-2-8-6-8-12 0-4 4-8 8-8s8 4 8 8c0 6-4 10-8 12z"/>
+                                <path d="M12 22V10"/>
+                                <path d="M8 14c2-2 6-2 8 0"/>
+                            </svg>
+                        </div>
+                        <h4>Climate & Sustainability</h4>
+                        <p>Applied data scientists with expertise in environmental modeling, industrial decarbonization, and lifecycle carbon accounting—translating complex data into actionable insight for smarter capital deployment.</p>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                                <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                            </svg>
+                        </div>
+                        <h4>Defense Tech & AI</h4>
+                        <p>Defense technologists and AI innovators specializing in predictive systems for mission-critical environments—building resilient, intelligent operations at scale with cutting-edge machine learning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Partnership Section -->
+        <section class="advisory" id="advisory">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Active Partnership</p>
+                <h2 class="section-title">We Don't Just Write Checks. We Join the Fight.</h2>
+                <p class="section-description">Capital is often the least valuable thing we bring to the table. We embed with companies—taking board seats, interim leadership roles, and hands-on operational positions to drive transformation from the inside.</p>
+            </div>
+
+            <div class="advisory-grid">
+                <div class="advisory-card reveal">
+                    <div class="advisory-icon">
+                        <svg viewBox="0 0 56 56" stroke-width="1">
+                            <circle cx="28" cy="20" r="8"/>
+                            <path d="M16 44c0-8 5.4-14 12-14s12 6 12 14"/>
+                            <path d="M28 44V34"/>
+                            <circle cx="14" cy="24" r="5"/>
+                            <circle cx="42" cy="24" r="5"/>
+                        </svg>
+                    </div>
+                    <h3>Strategic Leadership</h3>
+                    <p>Board seats, executive advisory, and C-suite partnerships. We help shape vision, navigate inflection points, and align stakeholders around what matters.</p>
+                </div>
+
+                <div class="advisory-card reveal">
+                    <div class="advisory-icon">
+                        <svg viewBox="0 0 56 56" stroke-width="1">
+                            <rect x="16" y="16" width="24" height="24" rx="2"/>
+                            <path d="M12 24h4M12 32h4M40 24h4M40 32h4"/>
+                            <path d="M24 12v4M32 12v4M24 40v4M32 40v4"/>
+                            <circle cx="28" cy="28" r="6"/>
+                        </svg>
+                    </div>
+                    <h3>Technology Integration</h3>
+                    <p>We don't just evaluate tech—we deploy it. From process intelligence to industrial automation, we get our hands dirty making technology work on the floor.</p>
+                </div>
+
+                <div class="advisory-card reveal">
+                    <div class="advisory-icon">
+                        <svg viewBox="0 0 56 56" stroke-width="1">
+                            <path d="M14 42V24l14-10 14 10v18"/>
+                            <path d="M24 42V32h8v10"/>
+                            <path d="M20 24h16M20 28h16"/>
+                        </svg>
+                    </div>
+                    <h3>Operational Partnership</h3>
+                    <p>Interim COO. Plant turnaround lead. Integration manager. When transformation demands presence, we show up—sleeves rolled, boots on the ground.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Approach Quote -->
+        <section class="approach">
+            <div class="approach-quote reveal">
+                <blockquote>
+                    Our roots are deeply embedded in the process of translating <span class="quote-accent">cutting-edge technology</span> from laboratories into scalable, market-ready solutions. This intricate journey from concept to commercialization is where our expertise shines.
+                </blockquote>
+                <div class="approach-divider"></div>
+                <p class="approach-attribution">Bridging Innovation and Application</p>
+            </div>
+        </section>
+
+        <!-- Focus Areas -->
+        <section class="focus" id="focus">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Investment Focus</p>
+                <h2 class="section-title">Where We Focus</h2>
+                <p class="section-description">We concentrate our expertise in sectors where first principles thinking creates durable competitive advantage—building foundational systems that outlast trends.</p>
+            </div>
+
+            <div class="focus-verticals">
+                <div class="vertical-card reveal">
+                    <div class="vertical-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                            <path d="M8 2s1 3 4 3 4-3 4-3"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-content">
+                        <h4>Climate & Energy</h4>
+                        <p>From carbon intelligence platforms and circular economy solutions to generation, storage, and grid infrastructure—we back ventures that align profitability with planetary stewardship.</p>
+                    </div>
+                </div>
+
+                <div class="vertical-card reveal">
+                    <div class="vertical-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-content">
+                        <h4>Resilient Supply Chains</h4>
+                        <p>We invest in essential operations that keep industries moving—strengthening the nodes and networks that underpin economic and national stability.</p>
+                    </div>
+                </div>
+
+                <div class="vertical-card reveal">
+                    <div class="vertical-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-content">
+                        <h4>Defense, Aerospace & Space</h4>
+                        <p>We back technologies and manufacturers that ensure strategic autonomy—equipping nations and allies with the means to defend, decide, and explore independently.</p>
+                    </div>
+                </div>
+
+                <div class="vertical-card reveal">
+                    <div class="vertical-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <rect x="2" y="6" width="8" height="12" rx="1"/>
+                            <rect x="14" y="2" width="8" height="8" rx="1"/>
+                            <rect x="14" y="14" width="8" height="8" rx="1"/>
+                            <path d="M10 12h4"/>
+                            <path d="M10 8h2"/>
+                            <path d="M10 16h2"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-content">
+                        <h4>Cyberphysical & Industrial</h4>
+                        <p>The convergence of digital intelligence and physical systems—from industrial IoT and autonomous systems to the factories of the future.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="foundation-wrapper reveal">
+                <div class="foundation-label">
+                    <span>Foundational to All Verticals</span>
+                </div>
+                <div class="foundation-card">
+                    <div class="foundation-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18 9l-5 5-4-4-6 6"/>
+                            <path d="M14 9h4v4"/>
+                        </svg>
+                    </div>
+                    <div class="foundation-content">
+                        <h4>Technical Compounding</h4>
+                        <p>We turn innovation into infrastructure—partnering with teams whose breakthroughs can be embedded, scaled, and compounded into lasting advantage. This principle threads through every vertical, amplifying returns across our entire portfolio.</p>
+                    </div>
+                    <div class="foundation-threads">
+                        <div class="thread"></div>
+                        <div class="thread"></div>
+                        <div class="thread"></div>
+                        <div class="thread"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="contact-content reveal">
+                <h2>Let's Build Something Foundational</h2>
+                <p>Whether you're a founder with a breakthrough technology, an operator seeking strategic partnership, or an institutional investor exploring co-investment opportunities, we'd welcome a conversation.</p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-method-label">Get in Touch</div>
+                        <div class="contact-method-value"><a href="mailto:alex@duchakventures.com">alex@duchakventures.com</a></div>
+                    </div>
+                </div>
+                <a href="mailto:alex@duchakventures.com" class="btn-primary">Start a Conversation</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">FIRST PRINCIPLS</div>
+                <div class="footer-tagline">Capital with Conviction. Counsel with Clarity.</div>
+            </div>
+            <div class="footer-links">
+                <a href="#philosophy">Philosophy</a>
+                <a href="#principals">Principals</a>
+                <a href="#advisory">Partnership</a>
+                <a href="#focus">Focus</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-legal">© 2025 First Principls Management, LLC. All rights reserved.</div>
+            <div class="footer-location">Headquartered in Chicagoland. Networks nationwide.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navigation scroll effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for ambient orbs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.ambient-orb');
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 0.05;
+                orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        document.querySelector('.mobile-nav-cta').addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    </script>
+</body>
+</html>
