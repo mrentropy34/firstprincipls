@@ -882,102 +882,173 @@
             margin-bottom: 1rem;
         }
 
-        .network-capabilities {
+        /* Access Grid */
+        .access-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem;
-        }
-
-        .capability-card {
-            background: rgba(26, 30, 40, 0.5);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
             border: 1px solid var(--glass-border);
             border-radius: 4px;
-            padding: 1.75rem;
-            transition: all 0.4s ease;
-            position: relative;
             overflow: hidden;
+            margin-top: 3rem;
         }
 
-        .capability-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .access-cell {
+            padding: 2rem 1.5rem;
+            border-right: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            text-align: center;
+            transition: all 0.4s ease;
         }
 
-        .capability-card:hover {
-            border-color: rgba(201, 169, 98, 0.3);
-            background: rgba(201, 169, 98, 0.03);
-            transform: translateY(-2px);
+        .access-cell:nth-child(3n) {
+            border-right: none;
         }
 
-        .capability-card:hover::before {
-            opacity: 1;
+        .access-cell:nth-child(n+7) {
+            border-bottom: none;
         }
 
-        .capability-icon {
-            width: 36px;
-            height: 36px;
-            margin-bottom: 1rem;
+        .access-cell:hover {
+            background: rgba(201, 169, 98, 0.05);
         }
 
-        .capability-icon svg {
-            width: 100%;
-            height: 100%;
-            stroke: var(--accent);
-            fill: none;
-        }
-
-        .capability-card h4 {
+        .access-cell h4 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 400;
             color: var(--text-primary);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
-        .capability-card p {
+        .access-cell p {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .access-cell-cta {
+            background: rgba(201, 169, 98, 0.05);
+        }
+
+        .access-cell-cta h4 {
+            color: var(--accent);
+        }
+
+        .access-cell-cta p {
             color: var(--text-secondary);
+            text-transform: none;
+            letter-spacing: 0;
             font-size: 0.8rem;
-            line-height: 1.6;
         }
 
-        @media (max-width: 1200px) {
-            .network-capabilities {
-                grid-template-columns: repeat(2, 1fr);
+        /* Network Tagline */
+        .network-tagline {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .network-tagline p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* Leadership Header */
+        .leadership-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            margin-top: 1rem;
+        }
+
+        .leadership-header span {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .leadership-header span::before,
+        .leadership-header span::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+
+        .leadership-header span::before {
+            right: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+
+        .leadership-header span::after {
+            left: 100%;
+            background: linear-gradient(270deg, transparent, var(--accent));
+        }
+
+        @media (max-width: 1024px) {
+            .access-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .network-section {
-                margin-top: 3rem;
-                padding-top: 3rem;
+            .access-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .network-title {
-                font-size: 2rem;
+            .access-cell:nth-child(3n) {
+                border-right: 1px solid var(--glass-border);
             }
 
-            .network-description {
-                font-size: 0.95rem;
+            .access-cell:nth-child(2n) {
+                border-right: none;
             }
 
-            .network-capabilities {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .access-cell:nth-child(n+7) {
+                border-bottom: 1px solid var(--glass-border);
             }
 
-            .capability-card {
-                padding: 1.5rem;
+            .access-cell:nth-child(n+9) {
+                border-bottom: none;
             }
 
-            .capability-card h4 {
+            .access-cell {
+                padding: 1.5rem 1rem;
+            }
+
+            .access-cell h4 {
                 font-size: 1rem;
+            }
+
+            .network-tagline p {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .access-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .access-cell {
+                border-right: none !important;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .access-cell:last-child {
+                border-bottom: none;
             }
         }
 
@@ -1816,7 +1887,7 @@
         <ul class="nav-links">
             <li><a href="#philosophy">Philosophy</a></li>
             <li><a href="#investment">Ethos</a></li>
-            <li><a href="#principals">Principals</a></li>
+            <li><a href="#principals">Team</a></li>
             <li><a href="#advisory">Partnership</a></li>
             <li><a href="#focus">Focus</a></li>
         </ul>
@@ -1833,7 +1904,7 @@
         <ul class="mobile-nav-links">
             <li><a href="#philosophy">Philosophy</a></li>
             <li><a href="#investment">Ethos</a></li>
-            <li><a href="#principals">Principals</a></li>
+            <li><a href="#principals">Team</a></li>
             <li><a href="#advisory">Partnership</a></li>
             <li><a href="#focus">Focus</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -1912,134 +1983,79 @@
             </div>
         </section>
 
-        <!-- Principals Section -->
+        <!-- Team Section -->
         <section class="principals" id="principals">
             <div class="section-header reveal">
-                <p class="section-eyebrow">Our Principals</p>
-                <h2 class="section-title">Experience That Shapes Conviction</h2>
-                <p class="section-description">Decades of leadership across defense, government, and industry—now focused on building what lasts.</p>
+                <p class="section-eyebrow">Our Team</p>
+                <h2 class="section-title">Access That Can't Be Bought</h2>
+                <p class="section-description">Our network spans former Pentagon leadership, Fortune 500 operators, institutional capital allocators, and technical founders who've built and scaled what others only study. These aren't advisors on retainer. They're principals who pick up the phone.</p>
             </div>
 
-            <div class="principals-grid">
-                <div class="principal-card reveal">
-                    <div class="principal-name">George Duchak, PhD, PE</div>
-                    <div class="principal-role">Founding Partner</div>
-                    <div class="principal-domain">Defense · National Security · Federal Innovation</div>
-                    <p class="principal-bio">A distinguished technology and defense leader with a career spanning senior roles across government, industry, and national security. Former Deputy Assistant Secretary of Defense, CIO of the Defense Logistics Agency, and Lab Director of the Air Force Research Laboratory. As founding director of DIUx—now the Defense Innovation Unit—pioneered the DoD's approach to dual-use technology adoption.</p>
-                    <div class="principal-value">Brings unmatched insight into federal innovation priorities, cyber-physical systems, and strategic acquisition—paired with a powerful network across the DoD, defense primes, and emerging tech ecosystems.</div>
+            <!-- Access Grid -->
+            <div class="access-grid reveal">
+                <div class="access-cell">
+                    <h4>Defense & National Security</h4>
+                    <p>Flag Officers · Agency Leadership · Program Executives</p>
                 </div>
-
-                <div class="principal-card reveal">
-                    <div class="principal-name">Alex Duchak</div>
-                    <div class="principal-role">Managing Partner</div>
-                    <div class="principal-domain">Operations · Industrial Technology · Business Strategy</div>
-                    <p class="principal-bio">A systems-driven builder, strategist, and operator with a track record of transforming industrial technologies into scalable market platforms. Fuses engineering precision with business model innovation to unlock value across advanced manufacturing, energy, and defense sectors.</p>
-                    <div class="principal-value">Brings hands-on expertise in technology commercialization, operational excellence, and the intricate journey from laboratory breakthrough to market-ready solution.</div>
+                <div class="access-cell">
+                    <h4>Industrial Operations</h4>
+                    <p>Plant Leaders · Turnaround Operators · Procurement Chiefs</p>
+                </div>
+                <div class="access-cell">
+                    <h4>Capital & Finance</h4>
+                    <p>Fund Managers · LP Networks · Board Directors</p>
+                </div>
+                <div class="access-cell">
+                    <h4>Engineering & Systems</h4>
+                    <p>Systems Architects · Technical Fellows · Integration Leads</p>
+                </div>
+                <div class="access-cell">
+                    <h4>Executive Communications</h4>
+                    <p>CEO Advisors · Narrative Strategists · Media Trainers</p>
+                </div>
+                <div class="access-cell">
+                    <h4>Policy & Development</h4>
+                    <p>Policy Architects · Economic Developers · Government Affairs</p>
+                </div>
+                <div class="access-cell">
+                    <h4>Climate Intelligence</h4>
+                    <p>Carbon Scientists · Sustainability Leaders · ESG Strategists</p>
+                </div>
+                <div class="access-cell">
+                    <h4>AI & Predictive Systems</h4>
+                    <p>ML Engineers · Data Scientists · Intelligence Analysts</p>
+                </div>
+                <div class="access-cell access-cell-cta">
+                    <h4>Your Challenge Here</h4>
+                    <p>We assemble the team to match the mission</p>
                 </div>
             </div>
 
-            <!-- Team of Teams Network -->
-            <div class="network-section reveal">
-                <div class="network-header">
-                    <div class="network-label">Our Extended Network</div>
-                    <h3 class="network-title">Team of Teams</h3>
-                    <p class="network-description">We operate with a fluid, decentralized, and deeply aligned ethos. Think less rigid hierarchy, more precision strike force. Our core team forms the nucleus, but our real strength lies in a dynamic ecosystem of operators, engineers, technologists, and strategists who plug in as needed to solve high-stakes, high-complexity problems.</p>
+            <!-- Tagline -->
+            <div class="network-tagline reveal">
+                <p>Principals who've sat in the chair—not consultants who've studied it.</p>
+            </div>
+
+            <!-- Leadership -->
+            <div class="leadership-section reveal">
+                <div class="leadership-header">
+                    <span>Leadership</span>
                 </div>
-
-                <div class="network-capabilities">
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="3"/>
-                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                            </svg>
-                        </div>
-                        <h4>Operational Excellence</h4>
-                        <p>Cross-sector execution specialists who turn bold strategies into actionable systems—aligning people, process, and technology to accelerate outcomes.</p>
+                <div class="principals-grid">
+                    <div class="principal-card reveal">
+                        <div class="principal-name">George Duchak, PhD, PE</div>
+                        <div class="principal-role">Founding Partner</div>
+                        <div class="principal-domain">Defense · National Security · Federal Innovation</div>
+                        <p class="principal-bio">A distinguished technology and defense leader with a career spanning senior roles across government, industry, and national security. Former Deputy Assistant Secretary of Defense, CIO of the Defense Logistics Agency, and Lab Director of the Air Force Research Laboratory. As founding director of DIUx—now the Defense Innovation Unit—pioneered the DoD's approach to dual-use technology adoption.</p>
+                        <div class="principal-value">Brings unmatched insight into federal innovation priorities, cyber-physical systems, and strategic acquisition—paired with a powerful network across the DoD, defense primes, and emerging tech ecosystems.</div>
                     </div>
 
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <path d="M2 20h20M4 20V10l4-2v12M8 20V8l4-2v14M16 20V6l4-2v16"/>
-                                <path d="M12 20V6"/>
-                            </svg>
-                        </div>
-                        <h4>Manufacturing & Supply Chain</h4>
-                        <p>Field-tested operators forged in the trenches of American manufacturing—from plant turnarounds to pandemic disruptions to global supply chain shocks. Deep networks across the industrial Midwest.</p>
-                    </div>
-
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                            </svg>
-                        </div>
-                        <h4>Capital Strategy</h4>
-                        <p>Institutional fundraisers with track records securing hundreds of millions across philanthropy, endowments, and mission-driven ventures. Deep expertise in donor psychology, stakeholder alignment, and narratives that move markets.</p>
-                    </div>
-
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <rect x="4" y="4" width="16" height="16" rx="2"/>
-                                <circle cx="9" cy="9" r="1.5"/>
-                                <circle cx="15" cy="9" r="1.5"/>
-                                <circle cx="9" cy="15" r="1.5"/>
-                                <circle cx="15" cy="15" r="1.5"/>
-                                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M20 9h3M1 15h3M20 15h3"/>
-                            </svg>
-                        </div>
-                        <h4>Engineering & Automation</h4>
-                        <p>Technical strategists with deep expertise in advanced test systems, electronics, and industrial automation—translating technical complexity into scalable, real-world performance for next-generation platforms.</p>
-                    </div>
-
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <path d="M3 11l18-5v12L3 13v-2z"/>
-                                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-                            </svg>
-                        </div>
-                        <h4>Communications & Narrative</h4>
-                        <p>World-class strategists who coach executives and founders on narratives that move people and capital. Experts at turning complexity into conviction through message discipline and shared vision.</p>
-                    </div>
-
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <path d="M3 21h18M4 21V10l8-6 8 6v11"/>
-                                <path d="M9 21v-6h6v6"/>
-                                <path d="M10 3v3M14 3v3"/>
-                            </svg>
-                        </div>
-                        <h4>Industrial Policy & Development</h4>
-                        <p>Capital markets veterans who bridge high finance, economic development, and manufacturing revitalization—scaling industrial transformation through policy alignment and strategic capital deployment.</p>
-                    </div>
-
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <path d="M12 22c-4-2-8-6-8-12 0-4 4-8 8-8s8 4 8 8c0 6-4 10-8 12z"/>
-                                <path d="M12 22V10"/>
-                                <path d="M8 14c2-2 6-2 8 0"/>
-                            </svg>
-                        </div>
-                        <h4>Climate & Sustainability</h4>
-                        <p>Applied data scientists with expertise in environmental modeling, industrial decarbonization, and lifecycle carbon accounting—translating complex data into actionable insight for smarter capital deployment.</p>
-                    </div>
-
-                    <div class="capability-card">
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <circle cx="12" cy="12" r="6"/>
-                                <circle cx="12" cy="12" r="2"/>
-                                <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
-                            </svg>
-                        </div>
-                        <h4>Defense Tech & AI</h4>
-                        <p>Defense technologists and AI innovators specializing in predictive systems for mission-critical environments—building resilient, intelligent operations at scale with cutting-edge machine learning.</p>
+                    <div class="principal-card reveal">
+                        <div class="principal-name">Alex Duchak</div>
+                        <div class="principal-role">Managing Partner</div>
+                        <div class="principal-domain">Operations · Industrial Technology · Business Strategy</div>
+                        <p class="principal-bio">A systems-driven builder, strategist, and operator with a track record of transforming industrial technologies, energy systems, and intelligence platforms into scalable market solutions. Focuses on technology that empowers novel business models—fusing engineering precision with business model innovation to unlock value across advanced manufacturing, energy, and defense sectors.</p>
+                        <div class="principal-value">Brings hands-on expertise in technology commercialization, operational excellence, and the intricate journey from laboratory breakthrough to market-ready solution.</div>
                     </div>
                 </div>
             </div>
@@ -2166,7 +2182,7 @@
                     </div>
                     <div class="vertical-content">
                         <h4>Cyberphysical & Industrial</h4>
-                        <p>The convergence of digital intelligence and physical systems—from industrial IoT and autonomous systems to the factories of the future.</p>
+                        <p>We invest in the convergence of digital intelligence and physical systems—from industrial IoT and autonomous operations to the factories of the future.</p>
                     </div>
                 </div>
             </div>
@@ -2222,7 +2238,7 @@
             </div>
             <div class="footer-links">
                 <a href="#philosophy">Philosophy</a>
-                <a href="#principals">Principals</a>
+                <a href="#principals">Team</a>
                 <a href="#advisory">Partnership</a>
                 <a href="#focus">Focus</a>
                 <a href="#contact">Contact</a>
