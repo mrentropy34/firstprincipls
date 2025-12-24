@@ -18,8 +18,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
     <style>
         :root {
+            /* Dark Mode (Default) */
             --bg-deep: #0a0c10;
             --bg-mid: #12151c;
             --bg-surface: #1a1e28;
@@ -35,6 +37,46 @@
             --blue-subtle: rgba(100, 140, 200, 0.08);
             --gradient-mesh-1: #1a1e28;
             --gradient-mesh-2: #0f1218;
+            --nav-bg: rgba(10, 12, 16, 0.7);
+            --nav-bg-scrolled: rgba(10, 12, 16, 0.9);
+            --mobile-nav-bg: rgba(10, 12, 16, 0.98);
+            --orb-1: rgba(201, 169, 98, 0.12);
+            --orb-2: rgba(60, 90, 140, 0.1);
+            --orb-3: rgba(201, 169, 98, 0.08);
+            --noise-opacity: 0.03;
+            --card-bg: rgba(26, 30, 40, 0.6);
+            --card-bg-hover: rgba(201, 169, 98, 0.05);
+            --ethos-glow: rgba(201, 169, 98, 0.06);
+            --foundation-bg: rgba(201, 169, 98, 0.08);
+        }
+
+        [data-theme="light"] {
+            --bg-deep: #f8f7f4;
+            --bg-mid: #f0efe9;
+            --bg-surface: #e8e6df;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --glass-highlight: rgba(0, 0, 0, 0.03);
+            --text-primary: #1a1a1a;
+            --text-secondary: rgba(26, 26, 26, 0.7);
+            --text-muted: rgba(26, 26, 26, 0.45);
+            --accent: #9a7b3c;
+            --accent-glow: rgba(154, 123, 60, 0.12);
+            --accent-deep: #7a5f2a;
+            --blue-subtle: rgba(60, 90, 140, 0.06);
+            --gradient-mesh-1: #f0efe9;
+            --gradient-mesh-2: #f8f7f4;
+            --nav-bg: rgba(248, 247, 244, 0.8);
+            --nav-bg-scrolled: rgba(248, 247, 244, 0.95);
+            --mobile-nav-bg: rgba(248, 247, 244, 0.98);
+            --orb-1: rgba(154, 123, 60, 0.08);
+            --orb-2: rgba(60, 90, 140, 0.06);
+            --orb-3: rgba(154, 123, 60, 0.05);
+            --noise-opacity: 0.015;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-bg-hover: rgba(154, 123, 60, 0.06);
+            --ethos-glow: rgba(154, 123, 60, 0.08);
+            --foundation-bg: rgba(154, 123, 60, 0.1);
         }
 
         *, *::before, *::after {
@@ -54,6 +96,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             font-weight: 300;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         /* Ambient Background */
@@ -76,7 +119,7 @@
         .orb-1 {
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(201, 169, 98, 0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--orb-1) 0%, transparent 70%);
             top: -200px;
             right: -150px;
             animation-delay: 0s;
@@ -85,7 +128,7 @@
         .orb-2 {
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(60, 90, 140, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--orb-2) 0%, transparent 70%);
             bottom: -300px;
             left: -200px;
             animation-delay: -7s;
@@ -94,7 +137,7 @@
         .orb-3 {
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(201, 169, 98, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--orb-3) 0%, transparent 70%);
             top: 50%;
             left: 30%;
             animation-delay: -14s;
@@ -112,7 +155,7 @@
             inset: 0;
             z-index: 1;
             pointer-events: none;
-            opacity: 0.03;
+            opacity: var(--noise-opacity);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
@@ -130,14 +173,14 @@
             gap: 3rem;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            background: rgba(10, 12, 16, 0.7);
+            background: var(--nav-bg);
             border-bottom: 1px solid var(--glass-border);
             transition: all 0.4s ease;
         }
 
         nav.scrolled {
             padding: 1rem 4%;
-            background: rgba(10, 12, 16, 0.9);
+            background: var(--nav-bg-scrolled);
         }
 
         .logo {
@@ -209,13 +252,20 @@
             width: 100%;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
         .nav-cta {
-            padding: 0.7rem 1.75rem;
+            padding: 0.65rem 1.5rem;
             background: transparent;
             border: 1px solid var(--accent);
+            border-radius: 2px;
             color: var(--accent);
             font-family: 'Outfit', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             text-decoration: none;
@@ -228,6 +278,61 @@
         .nav-cta:hover {
             background: var(--accent);
             color: var(--bg-deep);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+
+        .theme-toggle:hover {
+            opacity: 1;
+            background: var(--card-bg-hover);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease;
+            transform: rotate(0deg);
+        }
+
+        .theme-toggle:hover svg {
+            transform: rotate(20deg);
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
         }
 
         .mobile-menu-btn {
@@ -272,7 +377,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(10, 12, 16, 0.98);
+            background: var(--mobile-nav-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 99;
@@ -401,6 +506,7 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             border: none;
+            border-radius: 2px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -416,6 +522,7 @@
             padding: 1rem 2.5rem;
             background: transparent;
             border: 1px solid var(--glass-border);
+            border-radius: 2px;
             color: var(--text-primary);
             font-size: 0.85rem;
             letter-spacing: 0.1em;
@@ -612,7 +719,7 @@
         .ethos-card {
             position: relative;
             padding: 3rem 2.5rem;
-            background: linear-gradient(180deg, rgba(26, 30, 40, 0.6) 0%, rgba(26, 30, 40, 0.2) 100%);
+            background: linear-gradient(180deg, var(--card-bg) 0%, transparent 100%);
             border: 1px solid var(--glass-border);
             border-radius: 4px;
             text-align: center;
@@ -640,14 +747,14 @@
             transform: translate(-50%, -50%);
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(201, 169, 98, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--ethos-glow) 0%, transparent 70%);
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.4s ease;
         }
 
         .ethos-card:hover {
-            border-color: rgba(201, 169, 98, 0.3);
+            border-color: var(--accent);
             transform: translateY(-4px);
         }
 
@@ -740,7 +847,7 @@
             transform: translateX(-50%);
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(201, 169, 98, 0.04) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--ethos-glow) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -752,7 +859,7 @@
 
         .principal-card {
             position: relative;
-            background: linear-gradient(180deg, rgba(26, 30, 40, 0.8) 0%, rgba(26, 30, 40, 0.4) 100%);
+            background: linear-gradient(180deg, var(--card-bg) 0%, transparent 100%);
             border: 1px solid var(--glass-border);
             border-radius: 4px;
             padding: 3rem;
@@ -771,7 +878,7 @@
         }
 
         .principal-card:hover {
-            border-color: rgba(201, 169, 98, 0.3);
+            border-color: var(--accent);
             transform: translateY(-4px);
         }
 
@@ -910,7 +1017,7 @@
         }
 
         .access-cell:hover {
-            background: rgba(201, 169, 98, 0.05);
+            background: var(--card-bg-hover);
         }
 
         .access-cell h4 {
@@ -929,7 +1036,7 @@
         }
 
         .access-cell-cta {
-            background: rgba(201, 169, 98, 0.05);
+            background: var(--card-bg-hover);
         }
 
         .access-cell-cta h4 {
@@ -946,9 +1053,10 @@
         /* Network Tagline */
         .network-tagline {
             text-align: center;
-            margin: 3rem 0;
-            padding: 2rem 0;
+            margin: 4rem 0 3rem;
+            padding: 2.5rem 0;
             border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .network-tagline p {
@@ -957,6 +1065,8 @@
             font-weight: 300;
             font-style: italic;
             color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         /* Leadership Header */
@@ -1094,14 +1204,15 @@
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .advisory-icon svg {
-            width: 100%;
-            height: 100%;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 1;
+        .advisory-icon .material-symbols-outlined {
+            font-size: 40px;
+            color: var(--accent);
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
 
         .advisory-card h3 {
@@ -1198,7 +1309,7 @@
 
         .vertical-card:hover {
             border-color: var(--accent);
-            background: rgba(201, 169, 98, 0.05);
+            background: var(--card-bg-hover);
         }
 
         .vertical-icon {
@@ -1211,11 +1322,10 @@
             flex-shrink: 0;
         }
 
-        .vertical-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--accent);
-            fill: none;
+        .vertical-icon .material-symbols-outlined {
+            font-size: 24px;
+            color: var(--accent);
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
 
         .vertical-content h4 {
@@ -1274,8 +1384,8 @@
 
         .foundation-card {
             position: relative;
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.08) 0%, rgba(26, 30, 40, 0.8) 100%);
-            border: 1px solid rgba(201, 169, 98, 0.3);
+            background: linear-gradient(135deg, var(--foundation-bg) 0%, var(--card-bg) 100%);
+            border: 1px solid var(--accent);
             border-radius: 2px;
             padding: 3rem;
             display: flex;
@@ -1302,14 +1412,13 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            background: rgba(201, 169, 98, 0.1);
+            background: var(--card-bg-hover);
         }
 
-        .foundation-icon svg {
-            width: 32px;
-            height: 32px;
-            stroke: var(--accent);
-            fill: none;
+        .foundation-icon .material-symbols-outlined {
+            font-size: 32px;
+            color: var(--accent);
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
 
         .foundation-content {
@@ -1473,11 +1582,67 @@
             color: var(--text-muted);
         }
 
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 90;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .scroll-to-top svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--bg-deep);
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 44px;
+                height: 44px;
+            }
+
+            .scroll-to-top svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
         /* Scroll Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .reveal.visible {
@@ -1652,6 +1817,10 @@
                 margin-bottom: 1rem;
             }
 
+            .advisory-icon .material-symbols-outlined {
+                font-size: 32px;
+            }
+
             .advisory-card h3 {
                 font-size: 1.2rem;
             }
@@ -1691,9 +1860,8 @@
                 height: 40px;
             }
 
-            .vertical-icon svg {
-                width: 20px;
-                height: 20px;
+            .vertical-icon .material-symbols-outlined {
+                font-size: 20px;
             }
 
             .vertical-content h4 {
@@ -1715,9 +1883,8 @@
                 height: 56px;
             }
 
-            .foundation-icon svg {
-                width: 28px;
-                height: 28px;
+            .foundation-icon .material-symbols-outlined {
+                font-size: 28px;
             }
 
             .foundation-content h4 {
@@ -1891,12 +2058,30 @@
             <li><a href="#advisory">Partnership</a></li>
             <li><a href="#focus">Focus</a></li>
         </ul>
-        <a href="#contact" class="nav-cta">Connect</a>
-        <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <div class="nav-right">
+            <a href="#contact" class="nav-cta">Connect</a>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="moon-icon" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        </div>
     </nav>
 
     <!-- Mobile Navigation -->
@@ -2072,41 +2257,26 @@
             <div class="advisory-grid">
                 <div class="advisory-card reveal">
                     <div class="advisory-icon">
-                        <svg viewBox="0 0 56 56" stroke-width="1">
-                            <circle cx="28" cy="20" r="8"/>
-                            <path d="M16 44c0-8 5.4-14 12-14s12 6 12 14"/>
-                            <path d="M28 44V34"/>
-                            <circle cx="14" cy="24" r="5"/>
-                            <circle cx="42" cy="24" r="5"/>
-                        </svg>
+                        <span class="material-symbols-outlined">insights</span>
                     </div>
                     <h3>Strategic Leadership</h3>
-                    <p>Board seats, executive advisory, and C-suite partnerships. We help shape vision, navigate inflection points, and align stakeholders around what matters.</p>
+                    <p>We take board seats and advisory roles to align leadership around what matters most.</p>
                 </div>
 
                 <div class="advisory-card reveal">
                     <div class="advisory-icon">
-                        <svg viewBox="0 0 56 56" stroke-width="1">
-                            <rect x="16" y="16" width="24" height="24" rx="2"/>
-                            <path d="M12 24h4M12 32h4M40 24h4M40 32h4"/>
-                            <path d="M24 12v4M32 12v4M24 40v4M32 40v4"/>
-                            <circle cx="28" cy="28" r="6"/>
-                        </svg>
+                        <span class="material-symbols-outlined">hub</span>
                     </div>
                     <h3>Technology Integration</h3>
-                    <p>We don't just evaluate tech—we deploy it. From process intelligence to industrial automation, we get our hands dirty making technology work on the floor.</p>
+                    <p>We translate breakthrough technology into operational reality. Hands on, floor level.</p>
                 </div>
 
                 <div class="advisory-card reveal">
                     <div class="advisory-icon">
-                        <svg viewBox="0 0 56 56" stroke-width="1">
-                            <path d="M14 42V24l14-10 14 10v18"/>
-                            <path d="M24 42V32h8v10"/>
-                            <path d="M20 24h16M20 28h16"/>
-                        </svg>
+                        <span class="material-symbols-outlined">handshake</span>
                     </div>
                     <h3>Operational Partnership</h3>
-                    <p>Interim COO. Plant turnaround lead. Integration manager. When transformation demands presence, we show up—sleeves rolled, boots on the ground.</p>
+                    <p>We step into interim leadership roles to drive transformation from the inside out.</p>
                 </div>
             </div>
         </section>
@@ -2133,11 +2303,7 @@
             <div class="focus-verticals">
                 <div class="vertical-card reveal">
                     <div class="vertical-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                            <path d="M8 2s1 3 4 3 4-3 4-3"/>
-                        </svg>
+                        <span class="material-symbols-outlined">bolt</span>
                     </div>
                     <div class="vertical-content">
                         <h4>Climate & Energy</h4>
@@ -2147,9 +2313,7 @@
 
                 <div class="vertical-card reveal">
                     <div class="vertical-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
+                        <span class="material-symbols-outlined">local_shipping</span>
                     </div>
                     <div class="vertical-content">
                         <h4>Resilient Supply Chains</h4>
@@ -2159,9 +2323,7 @@
 
                 <div class="vertical-card reveal">
                     <div class="vertical-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
+                        <span class="material-symbols-outlined">rocket_launch</span>
                     </div>
                     <div class="vertical-content">
                         <h4>Defense, Aerospace & Space</h4>
@@ -2171,14 +2333,7 @@
 
                 <div class="vertical-card reveal">
                     <div class="vertical-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5">
-                            <rect x="2" y="6" width="8" height="12" rx="1"/>
-                            <rect x="14" y="2" width="8" height="8" rx="1"/>
-                            <rect x="14" y="14" width="8" height="8" rx="1"/>
-                            <path d="M10 12h4"/>
-                            <path d="M10 8h2"/>
-                            <path d="M10 16h2"/>
-                        </svg>
+                        <span class="material-symbols-outlined">precision_manufacturing</span>
                     </div>
                     <div class="vertical-content">
                         <h4>Cyberphysical & Industrial</h4>
@@ -2193,11 +2348,7 @@
                 </div>
                 <div class="foundation-card">
                     <div class="foundation-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5">
-                            <path d="M3 3v18h18"/>
-                            <path d="M18 9l-5 5-4-4-6 6"/>
-                            <path d="M14 9h4v4"/>
-                        </svg>
+                        <span class="material-symbols-outlined">trending_up</span>
                     </div>
                     <div class="foundation-content">
                         <h4>Technical Compounding</h4>
@@ -2250,7 +2401,37 @@
         </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+
     <script>
+        // Theme Toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            htmlElement.setAttribute('data-theme', 'light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            if (newTheme === 'light') {
+                htmlElement.setAttribute('data-theme', 'light');
+            } else {
+                htmlElement.removeAttribute('data-theme');
+            }
+            
+            localStorage.setItem('theme', newTheme);
+        });
+
         // Scroll-triggered animations
         const observerOptions = {
             threshold: 0.1,
@@ -2267,14 +2448,32 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Navigation scroll effect
+        // Navigation scroll effect & Scroll to top button
         const nav = document.querySelector('nav');
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+        
         window.addEventListener('scroll', () => {
+            // Nav effect
             if (window.scrollY > 100) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
+            
+            // Scroll to top button visibility
+            if (window.scrollY > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top click handler
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
         // Smooth scroll for anchor links
